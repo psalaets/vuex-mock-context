@@ -1,0 +1,22 @@
+{
+  "name": "vuex-mock-context",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:commonjs": "BABEL_ENV=commonjs babel index.js -o dist/index.js",
+    "build:es": "BABEL_ENV=es babel index.js -o dist/index.esm.js",
+    "build": "npm run build:commonjs && npm run build:es",
+    "prebuild": "mkdir dist",
+    "clean": "rimraf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "rimraf": "^2.6.1",
+    "tape": "^4.6.3"
+  }
+}

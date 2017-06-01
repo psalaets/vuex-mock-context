@@ -1,0 +1,24 @@
+{
+  "env": {
+    "commonjs": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 1 versions", "ie >= 10"]
+          },
+          "modules": "commonjs"
+        }]
+      ]
+    },
+    "es": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 1 versions", "ie >= 10"]
+          },
+          "modules": false
+        }]
+      ]
+    }
+  }
+}
