@@ -1,8 +1,7 @@
 {
   "name": "vuex-mock-context",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Test mock for vuex context",
   "main": "dist/index.js",
   "module": "es/index.js",
   "scripts": {
@@ -13,8 +12,13 @@
     "build": "npm run build:commonjs && npm run build:es",
     "clean": "rimraf dist es"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["vuex", "test", "mock"],
+  "author": "Paul Salaets <psalaets@gmail.com>",
+  "homepage": "https://github.com/psalaets/vuex-mock-context",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psalaets/vuex-mock-context.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",
