@@ -10,7 +10,7 @@ export function create() {
     },
     commit(...args) {
       log.push({
-        action: normalizePayload(...args)
+        mutation: normalizePayload(...args)
       });
     }
   };
