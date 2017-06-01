@@ -1,8 +1,9 @@
-export function create() {
+export function create(getters = {}) {
   const log = [];
 
   return {
     log,
+    getters,
     dispatch(...args) {
       log.push({
         action: normalizePayload(...args)
