@@ -20,6 +20,9 @@
     "url": "https://github.com/psalaets/vuex-mock-context.git"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "vuex": "^2.3.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.5.1",
