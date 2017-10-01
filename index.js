@@ -6,12 +6,12 @@ export function create(getters = {}) {
     getters,
     dispatch(...args) {
       log.push({
-        action: normalizePayload(...args)
+        dispatch: normalizePayload(...args)
       });
     },
     commit(...args) {
       log.push({
-        mutation: normalizePayload(...args)
+        commit: normalizePayload(...args)
       });
     }
   };

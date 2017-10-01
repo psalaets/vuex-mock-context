@@ -11,7 +11,7 @@ test('dispatch action', (t) => {
   });
 
   t.deepEqual(mockContext.log, [
-    {action: ['loadRecord', {
+    {dispatch: ['loadRecord', {
       id: 5,
       blah: 'foo'
     }]}
@@ -25,7 +25,7 @@ test('dispatch action with primitive payload', (t) => {
   mockContext.dispatch('loadRecord', 5);
 
   t.deepEqual(mockContext.log, [
-    {action: ['loadRecord', 5]}
+    {dispatch: ['loadRecord', 5]}
   ]);
 });
 
@@ -38,7 +38,7 @@ test('commit mutation', (t) => {
   });
 
   t.deepEqual(mockContext.log, [
-    {mutation: ['changeState', {
+    {commit: ['changeState', {
       id: 1
     }]}
   ]);
@@ -51,7 +51,7 @@ test('commit mutation with primitive payload', (t) => {
   mockContext.commit('changeState', 'dog');
 
   t.deepEqual(mockContext.log, [
-    {mutation: ['changeState', 'dog']}
+    {commit: ['changeState', 'dog']}
   ]);
 });
 
@@ -73,14 +73,14 @@ test('actions and mutations', (t) => {
   });
 
   t.deepEqual(mockContext.log, [
-    {action: ['loadRecord', {
+    {dispatch: ['loadRecord', {
       id: 5,
       blah: 'foo'
     }]},
-    {mutation: ['changeState', {
+    {commit: ['changeState', {
       id: 1
     }]},
-    {mutation: ['changeStateAgain', {
+    {commit: ['changeStateAgain', {
       id: 10
     }]}
   ]);
