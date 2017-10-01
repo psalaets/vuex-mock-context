@@ -1,9 +1,12 @@
-export function create(getters = {}) {
+export function create() {
   const log = [];
 
   return {
     log,
-    getters,
+    getters: {},
+    rootGetters: {},
+    state: {},
+    rootState: {},
     dispatch(...args) {
       log.push({
         dispatch: normalizePayload(...args)

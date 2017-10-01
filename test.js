@@ -86,24 +86,32 @@ test('actions and mutations', (t) => {
   ]);
 });
 
-test('context has provided getters', (t) => {
-  t.plan(1);
-  const mockContext = create({
-    name: 'bob',
-    count: 9
-  });
-
-  t.deepEqual(mockContext.getters, {
-    name: 'bob',
-    count: 9
-  });
-});
-
-test('getters defaults to empty', (t) => {
+test('context has empty getters object', (t) => {
   t.plan(1);
   const mockContext = create();
 
   t.deepEqual(mockContext.getters, {});
+});
+
+test('context has empty state object', (t) => {
+  t.plan(1);
+  const mockContext = create();
+
+  t.deepEqual(mockContext.state, {});
+});
+
+test('context has empty rootGetters object', (t) => {
+  t.plan(1);
+  const mockContext = create();
+
+  t.deepEqual(mockContext.rootGetters, {});
+});
+
+test('context has empty rootState object', (t) => {
+  t.plan(1);
+  const mockContext = create();
+
+  t.deepEqual(mockContext.rootState, {});
 });
 
 test('normalizePayload with type only', (t) => {
