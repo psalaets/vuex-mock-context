@@ -18,6 +18,17 @@ test('dispatch action', (t) => {
   ]);
 });
 
+test('dispatch action with primitive payload', (t) => {
+  t.plan(1);
+  const mockContext = create();
+
+  mockContext.dispatch('loadRecord', 5);
+
+  t.deepEqual(mockContext.log, [
+    {action: ['loadRecord', 5]}
+  ]);
+});
+
 test('commit mutation', (t) => {
   t.plan(1);
   const mockContext = create();
@@ -30,6 +41,17 @@ test('commit mutation', (t) => {
     {mutation: ['changeState', {
       id: 1
     }]}
+  ]);
+});
+
+test('commit mutation with primitive payload', (t) => {
+  t.plan(1);
+  const mockContext = create();
+
+  mockContext.commit('changeState', 'dog');
+
+  t.deepEqual(mockContext.log, [
+    {mutation: ['changeState', 'dog']}
   ]);
 });
 
