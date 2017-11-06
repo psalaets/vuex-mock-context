@@ -1,4 +1,4 @@
-export function create() {
+export function create(actionHandler = defaultActionHandler) {
   const log = [];
 
   return {
@@ -9,9 +9,14 @@ export function create() {
     rootState: {},
     dispatch(...args) {
       log.push({dispatch: args});
+      return actionHandler(...args);
     },
     commit(...args) {
       log.push({commit: args});
     }
   };
+}
+
+function defaultActionHandler() {
+  return Promise.resolve();
 }

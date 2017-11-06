@@ -73,6 +73,29 @@ test('dispatch', t => {
       [{dispatch: [{type: 'loadRecord', id: 5}, null, {root: true}]}]
     );
   });
+
+  t.test('return value is from action handler', st => {
+    st.plan(1);
+
+    const mockContext = create(() => Promise.resolve(4));
+
+    const promise = mockContext.dispatch('someAction');
+
+    promise.then(result => st.equal(result, 4));
+  });
+
+  t.test('rejection is from action handler', st => {
+    st.plan(1);
+
+    const mockContext = create(() => Promise.reject(new Error('from handler')));
+
+    const promise = mockContext.dispatch("someAction");
+
+    promise.then(
+      () => st.fail('expected rejected promise'),
+      error => st.equal(error.message, 'from handler')
+    );
+  });
 });
 
 test('commit', t => {
