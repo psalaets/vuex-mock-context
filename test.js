@@ -10,7 +10,7 @@ test('dispatch', t => {
 
     st.deepEqual(
       mockContext.log,
-      [{dispatch: ['loadRecord']}]
+      [{action: ['loadRecord']}]
     );
   });
 
@@ -22,7 +22,7 @@ test('dispatch', t => {
 
     st.deepEqual(
       mockContext.log,
-      [{dispatch: ['loadRecord', {id: 5}]}]
+      [{action: ['loadRecord', {id: 5}]}]
     );
   });
 
@@ -34,7 +34,7 @@ test('dispatch', t => {
 
     st.deepEqual(
       mockContext.log,
-      [{dispatch: [{type: 'loadRecord', id: 5}]}]
+      [{action: [{type: 'loadRecord', id: 5}]}]
     );
   });
 
@@ -46,7 +46,7 @@ test('dispatch', t => {
 
     st.deepEqual(
       mockContext.log,
-      [{dispatch: ['loadRecord', null, {root: true}]}]
+      [{action: ['loadRecord', null, {root: true}]}]
     );
   });
 
@@ -58,7 +58,7 @@ test('dispatch', t => {
 
     st.deepEqual(
       mockContext.log,
-      [{dispatch: ['loadRecord', {id: 5}, {root: true}]}]
+      [{action: ['loadRecord', {id: 5}, {root: true}]}]
     );
   });
 
@@ -70,7 +70,7 @@ test('dispatch', t => {
 
     st.deepEqual(
       mockContext.log,
-      [{dispatch: [{type: 'loadRecord', id: 5}, null, {root: true}]}]
+      [{action: [{type: 'loadRecord', id: 5}, null, {root: true}]}]
     );
   });
 
@@ -106,7 +106,7 @@ test('commit', t => {
     mockContext.commit('changeState');
 
     st.deepEqual(mockContext.log, [
-      {commit: ['changeState']}
+      {mutation: ['changeState']}
     ]);
   });
 
@@ -117,7 +117,7 @@ test('commit', t => {
     mockContext.commit('changeState', {id: 5});
 
     st.deepEqual(mockContext.log, [
-      {commit: ['changeState', {id: 5}]}
+      {mutation: ['changeState', {id: 5}]}
     ]);
   });
 
@@ -128,7 +128,7 @@ test('commit', t => {
     mockContext.commit({type: 'changeState', id: 5});
 
     st.deepEqual(mockContext.log, [
-      {commit: [{type: 'changeState', id: 5}]}
+      {mutation: [{type: 'changeState', id: 5}]}
     ]);
   });
 
@@ -139,7 +139,7 @@ test('commit', t => {
     mockContext.commit('changeState', null, {root: true});
 
     st.deepEqual(mockContext.log, [
-      {commit: ['changeState', null, {root: true}]}
+      {mutation: ['changeState', null, {root: true}]}
     ]);
   });
 
@@ -150,7 +150,7 @@ test('commit', t => {
     mockContext.commit('changeState', {id: 5}, {root: true});
 
     st.deepEqual(mockContext.log, [
-      {commit: ['changeState', {id: 5}, {root: true}]}
+      {mutation: ['changeState', {id: 5}, {root: true}]}
     ]);
   });
 
@@ -161,7 +161,7 @@ test('commit', t => {
     mockContext.commit({type: 'changeState', id: 5}, {root: true});
 
     st.deepEqual(mockContext.log, [
-      {commit: [{type: 'changeState', id: 5}, {root: true}]}
+      {mutation: [{type: 'changeState', id: 5}, {root: true}]}
     ]);
   });
 });
@@ -184,9 +184,9 @@ test('dispatches mixed with commits', (t) => {
   });
 
   t.deepEqual(mockContext.log, [
-    {dispatch: ['loadRecord', {id: 5, blah: 'foo'}]},
-    {commit: ['changeState', {id: 1}]},
-    {commit: ['anotherChange', {id: 10}]}
+    {action: ['loadRecord', {id: 5, blah: 'foo'}]},
+    {mutation: ['changeState', {id: 1}]},
+    {mutation: ['anotherChange', {id: 10}]}
   ]);
 });
 

@@ -8,11 +8,11 @@ export function create(actionHandler = defaultActionHandler) {
     state: {},
     rootState: {},
     dispatch(...args) {
-      log.push({dispatch: args});
+      log.push({action: args});
       return actionHandler(...args);
     },
     commit(...args) {
-      log.push({commit: args});
+      log.push({mutation: args});
     }
   };
 }
