@@ -10,9 +10,19 @@
     "build:commonjs": "BABEL_ENV=commonjs babel index.js --out-dir dist",
     "build:es": "BABEL_ENV=es babel index.js --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
-    "clean": "rimraf dist es"
+    "prebuild": "npm run clean",
+    "clean": "rimraf dist es",
+    "prepublishOnly": "npm test && npm run build"
   },
-  "keywords": ["vuex", "test", "mock"],
+  "files": [
+    "dist",
+    "es"
+  ],
+  "keywords": [
+    "vuex",
+    "test",
+    "mock"
+  ],
   "author": "Paul Salaets <psalaets@gmail.com>",
   "homepage": "https://github.com/psalaets/vuex-mock-context",
   "repository": {
