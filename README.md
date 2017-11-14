@@ -94,7 +94,11 @@ Create a mock context.
 
 ### mockContext.commit()
 
+Just like `context.commit()` in vuex.
+
 ### mockContext.dispatch()
+
+Just like `context.dispatch()` in vuex.
 
 Return value is determined by `actionHandler`, see above.
 
