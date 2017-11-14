@@ -18,18 +18,56 @@ See [Composing Actions](https://vuex.vuejs.org/en/actions.html) in the Vuex docs
 
 ## Usage
 
+### action
+
+```js
+save(context, payload) {
+  context.commit('INCREMENT_SAVE_COUNT');
+
+  if (context.getters.exists) {
+    return context.dispatch('update', payload);
+  } else {
+    return context.dispatch('create', payload);
+  }
+}
+```
+
+### test
+
 ```js
 import {create} from 'vuex-mock-context';
-import actions from './my-vuex-actions';
+import actions from './actions';
 
-describe('actions', function() {
-  it('doSomething', function() {
+describe('save action', function() {
+  it('updates existing thing', function() {
     const context = create();
+    context.getters.exists = true;
+    const payload = {
+      name: 'blah'
+    };
 
-    return actions.doSomething(context, payload)
+    return actions.save(context, payload)
       .then(() => {
-        // see API section below for what context.log will look like
-        assert.deepEquals(context.log, expected);
+        assert.deepEquals(context.log, [
+          {mutation: ['INCREMENT_SAVE_COUNT']},
+          {action: ['update', {name: 'blah'}]}
+        ]);
+      });
+  });
+
+  it('creates non-existent thing', function() {
+    const context = create();
+    context.getters.exists = false;
+    const payload = {
+      name: 'blah'
+    };
+
+    return actions.save(context, payload)
+      .then(() => {
+        assert.deepEquals(context.log, [
+          {mutation: ['INCREMENT_SAVE_COUNT']},
+          {action: ['create', {name: 'blah'}]}
+        ]);
       });
   });
 });
