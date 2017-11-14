@@ -40,14 +40,18 @@ import actions from './actions';
 
 describe('save action', function() {
   it('updates existing thing', function() {
+    // set up mock context
     const context = create();
     context.getters.exists = true;
+
     const payload = {
       name: 'blah'
     };
 
+    // invoke action handler
     return actions.save(context, payload)
       .then(() => {
+        // verify context used as expected
         assert.deepEquals(context.log, [
           {mutation: ['INCREMENT_SAVE_COUNT']},
           {action: ['update', {name: 'blah'}]}
@@ -56,14 +60,18 @@ describe('save action', function() {
   });
 
   it('creates non-existent thing', function() {
+    // set up mock context
     const context = create();
     context.getters.exists = false;
+
     const payload = {
       name: 'blah'
     };
 
+    // invoke action handler
     return actions.save(context, payload)
       .then(() => {
+        // verify context used as expected
         assert.deepEquals(context.log, [
           {mutation: ['INCREMENT_SAVE_COUNT']},
           {action: ['create', {name: 'blah'}]}
