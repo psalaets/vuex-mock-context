@@ -134,6 +134,14 @@ Empty object. Attach your own values here.
 
 Empty object. Attach your own values here.
 
+## Snapshot testing
+
+If you are using [Jest](https://facebook.github.io/jest/) or some other framework that supports snapshot testing, verify `context.log` with a snapshot:
+
+```js
+expect(context.log).toMatchSnapshot();
+```
+
 ## License
 
 MIT
