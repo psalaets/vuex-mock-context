@@ -18,7 +18,7 @@ See [Composing Actions](https://vuex.vuejs.org/en/actions.html) in the Vuex docs
 
 ## Usage
 
-### action
+You have this vuex action
 
 ```js
 save(context, payload) {
@@ -32,7 +32,7 @@ save(context, payload) {
 }
 ```
 
-### test
+You can test it like this
 
 ```js
 import {create} from 'vuex-mock-context';
