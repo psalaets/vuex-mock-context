@@ -81,6 +81,14 @@ describe('save action', function() {
 });
 ```
 
+## Snapshot testing
+
+If you are using [Jest](https://facebook.github.io/jest/) or some other framework that supports snapshot testing, verify `context.log` with a snapshot:
+
+```js
+expect(context.log).toMatchSnapshot();
+```
+
 ## API
 
 ```js
@@ -133,14 +141,6 @@ Empty object. Attach your own values here.
 ### mockContext.rootGetters
 
 Empty object. Attach your own values here.
-
-## Snapshot testing
-
-If you are using [Jest](https://facebook.github.io/jest/) or some other framework that supports snapshot testing, verify `context.log` with a snapshot:
-
-```js
-expect(context.log).toMatchSnapshot();
-```
 
 ## License
 
