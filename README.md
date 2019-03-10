@@ -1,5 +1,7 @@
 # vuex-mock-context
 
+[![Build Status](https://travis-ci.com/psalaets/vuex-mock-context.svg?branch=master)](https://travis-ci.com/psalaets/vuex-mock-context)
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/psalaets/vuex-mock-context.svg)](https://greenkeeper.io/)
 
 Test mock for vuex context
