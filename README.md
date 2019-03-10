@@ -6,15 +6,11 @@ Test mock for vuex context
 
 `npm install vuex-mock-context -D`
 
-or
-
-`yarn add vuex-mock-context -D`
-
 ## Why
 
 For testing that vuex actions commit mutations and dispatch actions as expected.
 
-See [Composing Actions](https://vuex.vuejs.org/en/actions.html) in the Vuex docs.
+See [Composing Actions](https://vuex.vuejs.org/guide/actions.html#composing-actions) in the Vuex docs.
 
 ## Usage
 
@@ -39,42 +35,34 @@ import {create} from 'vuex-mock-context';
 import actions from './actions';
 
 describe('save action', function() {
-  it('updates existing thing', function() {
+  it('updates if exists', function() {
     // set up mock context
     const context = create();
     context.getters.exists = true;
 
-    const payload = {
-      name: 'blah'
-    };
-
     // invoke action handler
-    return actions.save(context, payload)
+    return actions.save(context)
       .then(() => {
         // verify context used as expected
         assert.deepEquals(context.log, [
           {mutation: ['INCREMENT_SAVE_COUNT']},
-          {action: ['update', {name: 'blah'}]}
+          {action: ['update', {value: 'whatever'}]}
         ]);
       });
   });
 
-  it('creates non-existent thing', function() {
+  it('creates if not exists', function() {
     // set up mock context
     const context = create();
     context.getters.exists = false;
 
-    const payload = {
-      name: 'blah'
-    };
-
     // invoke action handler
-    return actions.save(context, payload)
+    return actions.save(context)
       .then(() => {
         // verify context used as expected
         assert.deepEquals(context.log, [
           {mutation: ['INCREMENT_SAVE_COUNT']},
-          {action: ['create', {name: 'blah'}]}
+          {action: ['create', {value: 'whatever'}]}
         ]);
       });
   });

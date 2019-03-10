@@ -21,7 +21,8 @@
   "keywords": [
     "vuex",
     "test",
-    "mock"
+    "mock",
+    "context"
   ],
   "author": "Paul Salaets <psalaets@gmail.com>",
   "homepage": "https://github.com/psalaets/vuex-mock-context",
@@ -31,7 +32,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "vuex": "^2.3.1"
+    "vuex": ">= 2.3.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
