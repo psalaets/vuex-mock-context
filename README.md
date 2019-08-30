@@ -22,12 +22,7 @@ You have this vuex action
 ```js
 save(context, payload) {
   context.commit('INCREMENT_SAVE_COUNT');
-
-  if (context.getters.exists) {
-    return context.dispatch('update', payload);
-  } else {
-    return context.dispatch('create', payload);
-  }
+  return context.dispatch('update', payload);
 }
 ```
 
@@ -37,44 +32,25 @@ You can test it like this
 import {create} from 'vuex-mock-context';
 import actions from './actions';
 
-describe('save action', function() {
-  it('updates if exists', function() {
-    // set up mock context
-    const context = create();
-    context.getters.exists = true;
+test('save action increments count and then updates', function() {
+  // set up mock context
+  const context = create();
 
-    // invoke action handler
-    return actions.save(context)
-      .then(() => {
-        // verify context used as expected
-        assert.deepEquals(context.log, [
-          {mutation: ['INCREMENT_SAVE_COUNT']},
-          {action: ['update', {value: 'whatever'}]}
-        ]);
-      });
-  });
-
-  it('creates if not exists', function() {
-    // set up mock context
-    const context = create();
-    context.getters.exists = false;
-
-    // invoke action handler
-    return actions.save(context)
-      .then(() => {
-        // verify context used as expected
-        assert.deepEquals(context.log, [
-          {mutation: ['INCREMENT_SAVE_COUNT']},
-          {action: ['create', {value: 'whatever'}]}
-        ]);
-      });
-  });
+  // invoke action handler
+  return actions.save(context, {value: 'whatever'})
+    .then(() => {
+      // verify context interactions
+      assert.deepEquals(context.log, [
+        {mutation: ['INCREMENT_SAVE_COUNT']},
+        {action: ['update', {value: 'whatever'}]}
+      ]);
+    });
 });
 ```
 
 ## Snapshot testing
 
-If you are using [Jest](https://facebook.github.io/jest/) or some other framework that supports snapshot testing, verify `context.log` with a snapshot:
+If you are using [Jest](https://facebook.github.io/jest/) or some other framework that supports snapshot testing, capture and verify `context.log` with a snapshot:
 
 ```js
 expect(context.log).toMatchSnapshot();
@@ -103,35 +79,50 @@ Return value is determined by `actionHandler`, see above.
 
 ### mockContext.log
 
-Array of objects.
+Array of objects that represent context interactions. There are two types of interactions:
 
-- For a mutation commit, object will be:
+#### 1. mutation
 
 ```js
-{mutation: [<arguments sent to commit>]}
+{mutation: [<args passed to commit>]}
 ```
 
-- For an action dispatch, object will be:
+For example
 
 ```js
-{action: [<arguments sent to dispatch>]}
+context.commit('DO_SOMETHING', {value: 1});
+```
+
+becomes
+
+```js
+{mutation: ['DO_SOMETHING', {value: 1}]}
+```
+
+#### 2. action
+
+```js
+{action: [<args passed to dispatch>]}
+```
+
+For example
+
+```js
+context.dispatch('save', {id: 5});
+```
+
+becomes
+
+```js
+{action: ['save', {id: 5}]}
 ```
 
 ### mockContext.state
-
-Empty object. Attach your own values here.
-
 ### mockContext.getters
-
-Empty object. Attach your own values here.
-
 ### mockContext.rootState
-
-Empty object. Attach your own values here.
-
 ### mockContext.rootGetters
 
-Empty object. Attach your own values here.
+All of these start off as an empty object. You can add properties as needed.
 
 ## License
 
