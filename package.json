@@ -38,6 +38,6 @@
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.5.1",
     "rimraf": "^3.0.0",
-    "tape": "^4.6.3"
+    "tape": "^5.0.0"
   }
 }
